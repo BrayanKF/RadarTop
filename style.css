@@ -7,37 +7,39 @@
 body {
   font-family: 'Poppins', sans-serif;
   color: #333;
-  background-color: #f9f9f9;
+  background: #f9f9f9;
   margin: 0;
   padding: 0;
   line-height: 1.6;
+  overflow-x: hidden;
 }
 
-/* Navbar fixa */
+/* NAV */
 nav {
-  background-color: #004d40;
+  background: #004d40;
   color: white;
-  padding: 15px 0;
-  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  padding: clamp(10px, 2vw, 18px) 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.12);
 }
 
 nav .container {
+  max-width: min(1200px, 95%);
+  margin: auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 20px;
+  flex-wrap: nowrap;
+  gap: 15px;
 }
 
 nav .logo {
-  font-size: 1.8rem;
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
   text-decoration: none;
-  color: #fff;
+  color: white;
   font-weight: 700;
   white-space: nowrap;
 }
@@ -45,17 +47,25 @@ nav .logo {
 nav ul {
   list-style: none;
   display: flex;
-  margin: 0;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
+  gap: clamp(10px, 3vw, 30px);
   padding: 0;
-  gap: 20px;
+  margin: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+
+nav ul::-webkit-scrollbar {
+  display: none;
 }
 
 nav ul li a {
+  color: white;
   text-decoration: none;
-  color: #fff;
-  font-size: 1rem;
-  transition: all 0.3s ease;
-  font-weight: 500;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  transition: 0.3s;
+  white-space: nowrap;
 }
 
 nav ul li a:hover {
@@ -64,18 +74,19 @@ nav ul li a:hover {
 
 /* HERO */
 header {
-  background: url('https://example.com/topografia-bg.jpg') no-repeat center center/cover;
+  background: url('https://images.unsplash.com/photo-1500877014900-96def59fdbaf') center/cover no-repeat;
   color: white;
+  padding: clamp(70px, 18vw, 180px) 20px;
   text-align: center;
-  padding: 140px 20px;
   position: relative;
+  min-height: 300px;
 }
 
 header::before {
   content: "";
   position: absolute;
   inset: 0;
-  background: rgba(0, 77, 64, 0.7);
+  background: rgba(0, 77, 64, 0.6);
 }
 
 .hero {
@@ -84,207 +95,208 @@ header::before {
 }
 
 .hero h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-  font-weight: 700;
+  font-size: clamp(1.8rem, 6vw, 3.5rem);
+  margin-bottom: 15px;
 }
 
 .hero p {
-  font-size: 1.3rem;
-  max-width: 700px;
-  margin: 0 auto;
+  font-size: clamp(1rem, 3vw, 1.3rem);
+  max-width: 750px;
+  margin: auto;
 }
 
-/* Seções */
+/* SEÇÕES */
 section {
-  padding: 80px 20px;
+  padding: clamp(60px, 10vw, 90px) 20px;
 }
 
 section h2 {
   text-align: center;
-  font-size: 2.3rem;
-  margin-bottom: 40px;
-  font-weight: 700;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  margin-bottom: 35px;
   color: #004d40;
   position: relative;
 }
 
 section h2::after {
   content: "";
-  display: block;
   width: 60px;
   height: 4px;
   background: #ffd54f;
-  margin: 10px auto 0;
+  display: block;
+  margin: 8px auto 0;
   border-radius: 2px;
 }
 
-/* Serviços */
+/* SOBRE */
+.about-wrapper {
+  display: grid;
+  gap: clamp(20px, 4vw, 40px);
+  max-width: 1000px;
+  margin: auto;
+}
+
+.about-card {
+  background: #ffffff;
+  padding: clamp(20px, 4vw, 40px);
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+  text-align: center;
+  transition: 0.3s ease;
+  border-left: 6px solid #00796b;
+}
+
+.about-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.12);
+}
+
+.about-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 15px;
+  background: #004d40;
+  color: #ffd54f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  font-size: 2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.about-card h2 {
+  font-size: clamp(1.5rem, 4vw, 2.2rem);
+  margin-bottom: 15px;
+  color: #004d40;
+}
+
+.about-card p {
+  font-size: clamp(1rem, 2.4vw, 1.15rem);
+  line-height: 1.7;
+  color: #444;
+}
+
+/* SERVIÇOS */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 25px;
 }
 
 .service-card {
   background: #fff;
-  padding: 25px;
+  padding: clamp(20px, 4vw, 30px);
   border-radius: 12px;
-  text-align: center;
-  box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  transition: 0.3s ease;
+  box-shadow: 0 6px 12px rgba(0,0,0,0.10);
+  transition: 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  height: auto;
+  min-height: 270px;
 }
 
 .service-card:hover {
   transform: translateY(-5px);
-  box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
-.service-card i,
-.service-card svg {
-  font-size: 2.5rem;
+.service-card i {
+  font-size: clamp(2rem, 6vw, 3rem);
   color: #00796b;
-  margin-bottom: 15px;
+  margin-bottom: 12px;
 }
 
 .service-card h3 {
-  font-size: 1.3rem;
-  margin-bottom: 10px;
-  color: #004d40;
+  font-size: clamp(1.1rem, 3vw, 1.5rem);
+  margin-bottom: 12px;
 }
 
 .service-card p {
-  font-size: 1rem;
-  color: #555;
+  font-size: clamp(0.9rem, 2.6vw, 1rem);
+  text-align: justify;
+  overflow-wrap: break-word;
 }
 
-/* Galeria */
+/* GALERIA */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 10px;
-}
-
-.photo {
-  border-radius: 10px;
-  overflow: hidden;
-  background: #fff;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: clamp(10px, 3vw, 20px);
 }
 
 .photo img {
   width: 100%;
-  height: 180px;
+  height: auto;
+  border-radius: 10px;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
-  transition: 0.4s ease;
+  transition: 0.3s ease;
 }
 
 .photo img:hover {
-  transform: scale(1.08);
+  transform: scale(1.07);
 }
 
-/* Lightbox */
+/* LIGHTBOX */
 #lightbox {
-  display: none;
   position: fixed;
   inset: 0;
-  z-index: 2000;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0,0,0,0.85);
+  display: none;
   justify-content: center;
   align-items: center;
+  z-index: 2000;
 }
 
 #lightbox img {
-  max-width: 90%;
+  max-width: 95%;
   max-height: 90%;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 #close {
   position: absolute;
-  top: 20px; 
-  right: 30px;
-  font-size: 2rem;
+  top: 20px;
+  right: 20px;
+  font-size: clamp(2rem, 8vw, 3rem);
   color: white;
   cursor: pointer;
 }
 
-/* Rodapé */
-footer {
-  background-color: #004d40;
-  color: white;
-  padding: 30px 20px;
+/* CONTATO */
+.contact-info p {
+  font-size: clamp(1rem, 2.5vw, 1.1rem);
+  margin: 10px 0;
   text-align: center;
 }
 
-/* RESPONSIVIDADE TOTAL */
-
-@media (max-width: 900px) {
-  nav ul {
-    gap: 10px;
-  }
+/* FOOTER */
+footer {
+  background: #004d40;
+  color: white;
+  padding: clamp(20px, 6vw, 40px) 20px;
+  text-align: center;
 }
 
-@media (max-width: 768px) {
+footer p {
+  margin: 0;
+}
 
+/* RESPONSIVIDADE EXTRA */
+@media (max-width: 480px) {
   nav .container {
     flex-direction: column;
-    gap: 8px;
+    align-items: center;
+    gap: 10px;
   }
 
   nav ul {
-    flex-wrap: wrap;
     justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
   }
 
-  header {
-    padding: 120px 20px;
-  }
-
-  .hero h1 {
-    font-size: 2.2rem;
-  }
-
-  .hero p {
-    font-size: 1rem;
-  }
-
-  section {
-    padding: 60px 15px;
-  }
-
-  .services-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .gallery {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 480px) {
-
-  nav .logo {
-    font-size: 1.5rem;
-  }
-
-  nav ul {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .hero h1 {
-    font-size: 1.9rem;
-  }
-
-  .hero p {
-    font-size: 0.95rem;
-  }
-
-  .photo img {
-    height: 150px;
-  }
-
-  section h2 {
-    font-size: 2rem;
+  .service-card {
+    padding: 16px;
   }
 }
