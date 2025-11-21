@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   font-family: 'Poppins', sans-serif;
   color: #333;
@@ -31,10 +35,11 @@ nav .container {
 }
 
 nav .logo {
-  font-size: 2rem;
+  font-size: 1.8rem;
   text-decoration: none;
   color: #fff;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 nav ul {
@@ -42,10 +47,7 @@ nav ul {
   display: flex;
   margin: 0;
   padding: 0;
-}
-
-nav ul li {
-  margin-left: 25px;
+  gap: 20px;
 }
 
 nav ul li a {
@@ -60,7 +62,7 @@ nav ul li a:hover {
   color: #ffd54f;
 }
 
-/* Hero */
+/* HERO */
 header {
   background: url('https://example.com/topografia-bg.jpg') no-repeat center center/cover;
   color: white;
@@ -72,7 +74,7 @@ header {
 header::before {
   content: "";
   position: absolute;
-  top:0; left:0; right:0; bottom:0;
+  inset: 0;
   background: rgba(0, 77, 64, 0.7);
 }
 
@@ -82,7 +84,7 @@ header::before {
 }
 
 .hero h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 20px;
   font-weight: 700;
 }
@@ -100,7 +102,7 @@ section {
 
 section h2 {
   text-align: center;
-  font-size: 2.5rem;
+  font-size: 2.3rem;
   margin-bottom: 40px;
   font-weight: 700;
   color: #004d40;
@@ -120,79 +122,72 @@ section h2::after {
 /* Serviços */
 .services-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 30px;
-  align-items: start; /* 🔥 Ajusta cada card ao tamanho do texto */
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 20px;
 }
 
 .service-card {
   background: #fff;
-  padding: 30px;
+  padding: 25px;
   border-radius: 12px;
+  text-align: center;
   box-shadow: 0 6px 12px rgba(0,0,0,0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  transition: 0.3s ease;
 }
 
 .service-card:hover {
-  transform: translateY(-8px);
+  transform: translateY(-5px);
   box-shadow: 0 12px 20px rgba(0,0,0,0.15);
 }
 
-.service-card i {
+.service-card i,
+.service-card svg {
   font-size: 2.5rem;
   color: #00796b;
   margin-bottom: 15px;
 }
 
 .service-card h3 {
-  font-size: 1.4rem;
+  font-size: 1.3rem;
   margin-bottom: 10px;
   color: #004d40;
-  text-align: center;
 }
 
 .service-card p {
   font-size: 1rem;
   color: #555;
-  text-align: left; /* Melhor leitura de textos longos */
 }
 
 /* Galeria */
 .gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 10px;
 }
 
 .photo {
   border-radius: 10px;
   overflow: hidden;
   background: #fff;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
 }
 
 .photo img {
   width: 100%;
-  height: 100%;
+  height: 180px;
   object-fit: cover;
-  transition: transform 0.4s ease;
-  cursor: pointer;
+  transition: 0.4s ease;
 }
 
 .photo img:hover {
-  transform: scale(1.1);
+  transform: scale(1.08);
 }
 
 /* Lightbox */
 #lightbox {
   display: none;
   position: fixed;
+  inset: 0;
   z-index: 2000;
-  left: 0; top: 0;
-  width: 100%; height: 100%;
   background: rgba(0,0,0,0.8);
   justify-content: center;
   align-items: center;
@@ -202,26 +197,15 @@ section h2::after {
   max-width: 90%;
   max-height: 90%;
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
 }
 
 #close {
   position: absolute;
-  top: 20px; right: 30px;
+  top: 20px; 
+  right: 30px;
   font-size: 2rem;
   color: white;
   cursor: pointer;
-}
-
-/* Contato */
-.contact-info {
-  text-align: center;
-  margin-top: 20px;
-  font-size: 1.1rem;
-}
-
-.contact-info p {
-  margin: 10px 0;
 }
 
 /* Rodapé */
@@ -232,28 +216,40 @@ footer {
   text-align: center;
 }
 
-footer p {
-  margin: 0;
-  font-size: 0.95rem;
+/* RESPONSIVIDADE TOTAL */
+
+@media (max-width: 900px) {
+  nav ul {
+    gap: 10px;
+  }
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
-  nav ul {
+
+  nav .container {
     flex-direction: column;
-    align-items: center;
+    gap: 8px;
   }
 
-  nav ul li {
-    margin: 10px 0;
+  nav ul {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  header {
+    padding: 120px 20px;
   }
 
   .hero h1 {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
   }
 
   .hero p {
     font-size: 1rem;
+  }
+
+  section {
+    padding: 60px 15px;
   }
 
   .services-grid {
@@ -261,6 +257,34 @@ footer p {
   }
 
   .gallery {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+
+  nav .logo {
+    font-size: 1.5rem;
+  }
+
+  nav ul {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .hero h1 {
+    font-size: 1.9rem;
+  }
+
+  .hero p {
+    font-size: 0.95rem;
+  }
+
+  .photo img {
+    height: 150px;
+  }
+
+  section h2 {
+    font-size: 2rem;
   }
 }
